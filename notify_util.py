@@ -64,17 +64,20 @@ class Feishu:
             ]
         """
         payload = {
-            "config": {
-                "wide_screen_mode": True
-            },
-            "header": {
-                "template": "turquoise",
-                "title": {"tag": "plain_text", "content": title}
-            },
-            "elements": [
-                {"tag": "div", "text": {"tag": "lark_md", "content": markdown_content}},
-                {"tag": "action", "actions": actions}
-            ]
+            "msg_type": "interactive",
+            "card": {
+                "config": {
+                    "wide_screen_mode": True
+                },
+                "header": {
+                    "template": "turquoise",
+                    "title": {"tag": "plain_text", "content": title}
+                },
+                "elements": [
+                    {"tag": "div", "text": {"tag": "lark_md", "content": markdown_content}},
+                    {"tag": "action", "actions": actions}
+                ]
+            }
         }
         self._send_(payload)
 
