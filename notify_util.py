@@ -19,7 +19,7 @@ class Feishu:
             resp_dict = response.json()
             print("✅ 飞书消息发送成功" if resp_dict.get('code') == 0 else f"❌ 发送失败: {str(resp_dict)}")
         else:
-            raise Exception(str(resp_dict))
+            raise Exception(response.text)
 
     def send_text(self, msg:str, at_all:bool=False):
         at_msg = '<at user_id="all">所有人</at>' if at_all else ''
@@ -95,10 +95,9 @@ class Pushme:
         webhook_url, headers = self.webhook_url, self.HEADERS
         response = requests.post(webhook_url, headers=headers, data=payload)
         if response.status_code == 200:
-            resp_dict = response.json()
-            print("✅ Pushme消息发送成功" if resp_dict.get('code') == 0 else f"❌ 发送失败: {str(resp_dict)}")
+            print("✅ Pushme消息发送成功" if response.text.lower() == 'success' else f"❌ 发送失败: {response.text}")
         else:
-            raise Exception(str(resp_dict))
+            raise Exception(response.text)
 
     def send_markdown(self, title, markdown_content):
         push_key = self.token
