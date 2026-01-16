@@ -35,6 +35,7 @@ class Feishu:
             markdown_content (str): Markdown 内容文本
             footer: 脚注内容
         """
+        footer = [{"tag": "hr"}, {"tag": "note", "elements": [{"tag": "plain_text", "content": footer}]}] if footer else []  # 分割线和底部注释（可选）
         payload = {
             "msg_type": "interactive",
             "card": {
@@ -45,12 +46,7 @@ class Feishu:
                     "template": "blue",  # 标题颜色：blue, wathet, turquoise, green, yellow, orange, red, carmine, violet, purple, indigo, grey
                     "title": {"tag": "plain_text", "content": title}
                 },
-                "elements": [
-                    {"tag": "markdown", "content": markdown_content},
-                    # 下面这个是分割线和底部注释（可选）
-                    {"tag": "hr"},
-                    {"tag": "note", "elements": [{"tag": "plain_text", "content": footer}]}
-                ]
+                "elements": [{"tag": "markdown", "content": markdown_content}] + footer
             }
         }
         self._send_(payload)
