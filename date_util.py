@@ -12,7 +12,7 @@ def now_time(tz:str='Asia/Shanghai') -> datetime:
 
 def now(fmt:str='%Y-%m-%d %H:%M:%S', tz:str='Asia/Shanghai') -> str:
     """ 当前时间字符串 """
-    return now(tz).strftime(fmt)
+    return now_time(tz).strftime(fmt)
 
 def get_date(ndays:int=-1, base_date:Optional[str]=None, base_date_FMT:Optional[str]=None, FMT:str='%Y-%m-%d', tz:str='Asia/Shanghai') -> str:
     """ 获取几天前/后的日期字符串 """
