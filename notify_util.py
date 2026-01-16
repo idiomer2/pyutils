@@ -1,6 +1,9 @@
-# notify_util.py
+""" 消息通知util
+"""
+
 import json
 import requests
+
 
 class Feishu:
     WEBHOOK_BASE_URL = 'https://open.feishu.cn/open-apis/bot/v2/hook/'
