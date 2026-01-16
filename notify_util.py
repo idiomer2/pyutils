@@ -93,7 +93,7 @@ class Pushme:
 
     def _send_(self, payload):
         webhook_url, headers = self.webhook_url, self.HEADERS
-        response = requests.post(webhook_url, headers=headers, data=json.dumps(payload))
+        response = requests.post(webhook_url, headers=headers, data=payload)
         if response.status_code == 200:
             resp_dict = response.json()
             print("✅ Pushme消息发送成功" if resp_dict.get('code') == 0 else f"❌ 发送失败: {str(resp_dict)}")
